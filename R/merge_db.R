@@ -2,15 +2,6 @@
 # integra dove manca
 # un form in cui inserisci (autore, fumetto), checka elemento, se è parziale aggiunge mancanti,
 # se mancano tutti manda notifica chiedendo il permesso
-
-#install.packages("googlesheets")
-#install.packages("readxl")
-#install.packages("stringr")
-# library(googledrive)
-# library(stringr)
-# library(readxl)
-# source("R/functions.R")
-
 #' @export
 merge_db <- function(
   address1 = "https://drive.google.com/file/d/1j7EpOrkGWiWfIj1Q6IyV-S0cqIzG90Em/",
