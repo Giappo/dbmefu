@@ -2,4 +2,5 @@
 
 export(correct_characters)
 export(correct_editori)
+export(editori_unici)
 export(merge_db)

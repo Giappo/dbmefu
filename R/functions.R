@@ -254,3 +254,8 @@ correct_editori <- function(editore) {
   return(editore)
 }
 
+#' @export
+editori_unici <- function(merged_db) {
+  out <- sort(unique(unlist(lapply(merged_db$Editori, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+  out
+}
