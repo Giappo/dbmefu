@@ -1,0 +1,44 @@
+---
+title: "dbmefu pipeline"
+author: "Giovanni Laudanno"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sls pipeline}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+---
+
+The aim of the project is to collect the data for the MeFu database.
+
+First, load the library:
+
+```{r}
+install.packages("devtools")
+devtools::install_github("Giappo/dbmefu")
+library(dbmefu, quietly = TRUE)
+```
+
+First provide the database addresses
+
+```{r}
+# Address of the main database
+  address1 <- "https://drive.google.com/file/d/1j7EpOrkGWiWfIj1Q6IyV-S0cqIzG90Em/"
+# Address of the secondary database that you wish to integrate
+  address2 <- "https://docs.google.com/spreadsheets/d/1AipazAj6Ebfuv0Kek4xMRYva8sodUQs-4AI3li0IbzY/"
+```
+
+Then you can merge the databases with the following call
+
+```{r}
+db_merged <- dbmefu::merge_db(address1 = address1, address2 = address2)
+```
+
+You can check for example the list of all the editors in the complete database
+
+```{r}
+editors <- dbmefu::editori_unici(db_merged)
+editors
+```
