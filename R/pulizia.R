@@ -50,6 +50,7 @@ correct_characters <- function(xyz) {
   xyz <- gsub(x = xyz, pattern = "à¨", replacement = "è")
   xyz <- gsub(x = xyz, pattern = "à¬", replacement = "ì")
   xyz <- gsub(x = xyz, pattern = "Ã­e", replacement = "íe")
+  xyz <- gsub(x = xyz, pattern = "Ã©", replacement = "é")
 
   xyz <- stringr::str_squish(xyz)
 

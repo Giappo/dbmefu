@@ -12,7 +12,6 @@ Depends:
     googledrive,
     knitr,
     readxl,
-    reticulate,
     stringr,
     testit,
     vctrs
