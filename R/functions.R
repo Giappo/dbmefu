@@ -1,6 +1,12 @@
 #' @export
-editori_unici <- function(merged_db) {
+lista_editori_unici <- function(merged_db) {
   out <- sort(unique(unlist(lapply(merged_db$Editori, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+  out
+}
+
+#' @export
+lista_isbn_unici <- function(merged_db) {
+  out <- sort(unique(unlist(lapply(merged_db$ISBN, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 

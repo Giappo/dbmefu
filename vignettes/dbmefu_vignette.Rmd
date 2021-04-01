@@ -53,6 +53,6 @@ print(db_merged)
 You can check for example the list of all the editors in the complete database
 
 ```{r}
-editors <- dbmefu::editori_unici(db_merged)
+editors <- dbmefu::lista_editori_unici(db_merged)
 editors
 ```

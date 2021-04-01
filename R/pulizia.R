@@ -341,5 +341,30 @@ ripulisci_df <- function(df) {
   df <- dbmefu::ripulisci_nomi_darte(df)
   df <- dbmefu::ripulisci_editori(df)
   df <- dbmefu::ripulisci_nomi(df)
+  df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
+  df
+}
+
+#' @export
+ordine_alfabetico_colonna <- function(df, colonna, maiusc = FALSE) {
+  if (!colonna %in% colnames(df)) {
+    stop("Questa colonna non esiste!")
+  }
+  if (!maiusc %in% c(TRUE, FALSE) ) {
+    stop("'maiusc' must be boolean")
+  }
+  for (i in 1:nrow(df)) {
+    linea_i_vec <- df[colonna][i, ]
+    x <- stringr::str_split(linea_i_vec, pattern = ", ")[[1]]
+    if (maiusc == FALSE) {
+      temp <- paste(sort(x), collapse = ", ")
+      df[colonna][i, ] <- dbmefu::correct_nome(temp)
+    }
+    if (maiusc == TRUE) {
+      temp <- paste(sort(stringr::str_to_title(x)), collapse = ", ")
+      df[colonna][i, ] <- dbmefu::correct_nome(temp)
+    }
+  }
+
   df
 }
