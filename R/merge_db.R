@@ -55,6 +55,7 @@ merge_db <- function(
 
   df3 <- df3[order(df3$Nome), ]
   rownames(df3) <- 1:nrow(df3)
+  df3 <- dbmefu::ordine_alfabetico_colonna(df = df3, colonna = "ISBN")
   write.csv(df3, file = "elenco_mefu.csv")
   df3
 }
