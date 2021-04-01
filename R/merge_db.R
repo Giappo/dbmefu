@@ -41,6 +41,7 @@ merge_db <- function(
   }
 
   df3 <- df3[order(df3$Nome), ]
+  rownames(df3) <- 1:nrow(df3)
   write.csv(df3, file = "elenco_mefu.csv")
   df3
 }
