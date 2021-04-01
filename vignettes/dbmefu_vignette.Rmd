@@ -47,6 +47,7 @@ Finally you can merge the databases with the following call
 
 ```{r}
 db_merged <- dbmefu::merge_db(df1 = df1, df2 = df2)
+print(db_merged)
 ```
 
 You can check for example the list of all the editors in the complete database
