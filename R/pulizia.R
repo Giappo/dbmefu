@@ -317,6 +317,18 @@ ripulisci_editori <- function(df) {
 }
 
 #' @export
+ripulisci_prima_pubblicazione <- function(df) {
+  for (i in 1:nrow(df)) {
+    all <- df["Paesi.di.prima.pubblicazione"][i, ]
+    vec <- stringr::str_split(all, pattern = ", ")[[1]]
+    vec[vec == "Us" | vec == "US"] <- "USA"
+    vec <- sort(unique(vec))
+    df["Paesi.di.prima.pubblicazione"][i, ] <- paste(vec, collapse = ", ")
+  }
+  df
+}
+
+#' @export
 correct_nome <- function(nome) {
   nome <- dbmefu::correct_characters(nome)
   nome2 <- gsub(pattern = " $", replacement = "", x = nome)
@@ -342,6 +354,7 @@ ripulisci_df <- function(df) {
   df <- dbmefu::ripulisci_editori(df)
   df <- dbmefu::ripulisci_nomi(df)
   df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
+  df <- dbmefu::ripulisci_prima_pubblicazione(df)
   df
 }
 

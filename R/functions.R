@@ -11,6 +11,18 @@ lista_isbn_unici <- function(merged_db) {
 }
 
 #' @export
+lista_mercati_unici <- function(merged_db) {
+  out <- sort(unique(unlist(lapply(merged_db$Mercati, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+  out
+}
+
+#' @export
+lista_prima_pubblicazione_unici <- function(merged_db) {
+  out <- sort(unique(unlist(lapply(merged_db["Paesi.di.prima.pubblicazione"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+  out
+}
+
+#' @export
 import_df <- function(
   address
 ) {
