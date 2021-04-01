@@ -54,12 +54,16 @@ merge_db <- function(
   df3 <- df3[order(df3$Nome), ]
   rownames(df3) <- 1:nrow(df3)
   for (var in vars) {
-    if (var != "Editori") {
-      maiusc <- TRUE
-    } else {
+    if (var %in% c("Editori", "Insegna.presso")) {
       maiusc <- FALSE
+    } else {
+      maiusc <- TRUE
     }
-    df3 <- dbmefu::ordine_alfabetico_colonna(df = df3, colonna = var, maiusc = maiusc)
+    df3 <- dbmefu::ordine_alfabetico_colonna(
+      df = df3,
+      colonna = var,
+      maiusc = maiusc
+    )
   }
   write.csv(df3, file = "elenco_mefu.csv")
   df3
