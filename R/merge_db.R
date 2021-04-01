@@ -1,12 +1,12 @@
-# confronta excel 1 e excel 2
-# integra dove manca
-# un form in cui inserisci (autore, fumetto), checka elemento, se è parziale aggiunge mancanti,
-# se mancano tutti manda notifica chiedendo il permesso
+#' @title Merge databases
+#' @description Merges df1 and df2
+#' @inheritParams default_params_doc
+#' @return a merged database
 #' @export
 merge_db <- function(
   df1,
   df2,
-  choose_folder = FALSE
+  folder = NA
 ) {
 
   testit::assert(colnames(df1) == colnames(df2))
@@ -67,10 +67,13 @@ merge_db <- function(
     )
   }
 
-  if (choose_folder) {
-    write.csv(df3, file = file.path(utils::choose.dir(), "elenco_mefu.csv"))
+  filename <- "elenco_mefu.csv"
+  if (folder == "choose") {
+    write.csv(df3, file = file.path(utils::choose.dir(), filename))
   } else {
-    write.csv(df3, file = "elenco_mefu.csv")
+    if (!is.na(folder)) {
+      write.csv(df3, file = file.path(folder, filename))
+    }
   }
 
   df3
