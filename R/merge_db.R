@@ -4,22 +4,10 @@
 # se mancano tutti manda notifica chiedendo il permesso
 #' @export
 merge_db <- function(
-  address1 = "https://drive.google.com/file/d/1j7EpOrkGWiWfIj1Q6IyV-S0cqIzG90Em/",
-  address2 = "https://docs.google.com/spreadsheets/d/1AipazAj6Ebfuv0Kek4xMRYva8sodUQs-4AI3li0IbzY/"
+  df1,
+  df2
 ) {
 
-  x <- googledrive::drive_download(address1, type = "xlsx", overwrite = TRUE)
-  df1 <- readxl::read_xlsx(x$name)
-
-  y <- googledrive::drive_download(address2, type = "csv", overwrite = TRUE)
-  df2 <- read.csv(paste0(y$name, ".csv"))
-
-  df1 <- data.frame(df1)
-  df2 <- data.frame(df2)
-  df1 <- df1[order(df1$Nome), ]
-  df2 <- df2[order(df2$Nome), ]
-  colnames(df2)[colnames(df2) == "AttivitÃ."] <- "Attività"
-  confronti <- "Editori"
   testit::assert(colnames(df1) == colnames(df2))
 
   nomi1 <- df1$Nome; length(nomi1)
@@ -56,4 +44,3 @@ merge_db <- function(
   write.csv(df3, file = "elenco_mefu.csv")
   df3
 }
-

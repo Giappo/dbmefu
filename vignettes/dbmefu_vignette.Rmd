@@ -1,15 +1,19 @@
 ---
-title: "dbmefu pipeline"
+title: "dbmefu_vignette"
 author: "Giovanni Laudanno"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{sls pipeline}
+  %\VignetteIndexEntry{dbmefu_vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-  \usepackage[T1]{fontenc}
-  \usepackage{lmodern}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 The aim of the project is to collect the data for the MeFu database.
 
@@ -30,10 +34,19 @@ First provide the database addresses
   address2 <- "https://docs.google.com/spreadsheets/d/1AipazAj6Ebfuv0Kek4xMRYva8sodUQs-4AI3li0IbzY/"
 ```
 
-Then you can merge the databases with the following call
+Then you can download the databases and clean them
 
 ```{r}
-db_merged <- dbmefu::merge_db(address1 = address1, address2 = address2)
+df1 <- dbmefu::import_df(address1)
+df2 <- dbmefu::import_df(address2)
+df1 <- dbmefu::ripulisci_df(df1)
+df2 <- dbmefu::ripulisci_df(df2)
+```
+
+Finally you can merge the databases with the following call
+
+```{r}
+db_merged <- dbmefu::merge_db(df1 = df1, df2 = df2)
 ```
 
 You can check for example the list of all the editors in the complete database

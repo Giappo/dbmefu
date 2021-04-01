@@ -2,5 +2,12 @@
 
 export(correct_characters)
 export(correct_editori)
+export(correct_nome)
 export(editori_unici)
+export(import_df)
 export(merge_db)
+export(ripulisci_df)
+export(ripulisci_editori)
+export(ripulisci_nomi)
+export(ripulisci_nomi_colonne)
+export(ripulisci_nomi_darte)
