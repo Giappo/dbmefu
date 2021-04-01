@@ -10,6 +10,9 @@ merge_db(df1, df2, folder = NA)
 \item{df1}{database from mefu}
 
 \item{df2}{database from comixtime}
+
+\item{folder}{if set to "choose" let you choose navigating in your folder system.
+If a path is provided it'll save there}
 }
 \value{
 a merged database

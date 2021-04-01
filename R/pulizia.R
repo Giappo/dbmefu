@@ -347,6 +347,10 @@ ripulisci_nomi <- function(df) {
   df
 }
 
+#' @title Clean the dataframe so you can work with it
+#' @description Clean the dataframe so you can work with it
+#' @inheritParams default_params_doc
+#' @return a clean dataframe
 #' @export
 ripulisci_df <- function(df) {
   df <- dbmefu::ripulisci_nomi_colonne(df)

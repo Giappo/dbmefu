@@ -5,12 +5,17 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(df1, df2, folder)
+default_params_doc(df, df1, df2, folder)
 }
 \arguments{
+\item{df}{a dataframe}
+
 \item{df1}{database from mefu}
 
 \item{df2}{database from comixtime}
+
+\item{folder}{if set to "choose" let you choose navigating in your folder system.
+If a path is provided it'll save there}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

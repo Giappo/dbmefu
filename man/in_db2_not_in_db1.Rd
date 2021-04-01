@@ -10,6 +10,9 @@ in_db2_not_in_db1(df1, df2, folder = NA)
 \item{df1}{database from mefu}
 
 \item{df2}{database from comixtime}
+
+\item{folder}{if set to "choose" let you choose navigating in your folder system.
+If a path is provided it'll save there}
 }
 \value{
 a dataframe
