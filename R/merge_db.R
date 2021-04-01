@@ -5,7 +5,8 @@
 #' @export
 merge_db <- function(
   df1,
-  df2
+  df2,
+  choose_folder = FALSE
 ) {
 
   testit::assert(colnames(df1) == colnames(df2))
@@ -65,6 +66,12 @@ merge_db <- function(
       maiusc = maiusc
     )
   }
-  write.csv(df3, file = "elenco_mefu.csv")
+
+  if (choose_folder) {
+    write.csv(df3, file = file.path(utils::choose.dir(), "elenco_mefu.csv"))
+  } else {
+    write.csv(df3, file = "elenco_mefu.csv")
+  }
+
   df3
 }
