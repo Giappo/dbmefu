@@ -68,13 +68,7 @@ merge_db <- function(
   }
 
   filename <- "elenco_mefu.csv"
-  if (folder == "choose") {
-    write.csv(df3, file = file.path(utils::choose.dir(), filename))
-  } else {
-    if (!is.na(folder)) {
-      write.csv(df3, file = file.path(folder, filename))
-    }
-  }
+  dbmefu::save_df(df = df3, filename = filename, folder = folder)
 
   df3
 }

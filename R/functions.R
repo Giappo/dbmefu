@@ -43,3 +43,23 @@ import_df <- function(
   colnames(df)[colnames(df) == "AttivitÃ."] <- "Attività"
   df
 }
+
+#' @export
+save_df <- function(
+  df,
+  filename,
+  folder
+) {
+  if (!is.na(folder)) {
+    if (folder == "choose") {
+      write.csv(df3, file = file.path(utils::choose.dir(), filename))
+    } else {
+      if (dir.exists(folder)) {
+        write.csv(df3, file = file.path(folder, filename))
+      } else {
+        write.csv(df3, file = filename)
+      }
+    }
+  }
+  return()
+}

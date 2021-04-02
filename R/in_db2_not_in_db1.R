@@ -14,13 +14,7 @@ in_db2_not_in_db1 <- function(
   df3 <- df2[(!nomi2 %in% nomi1), ]
 
   filename <- "not_in_db1.csv"
-  if (folder == "choose") {
-    write.csv(df3, file = file.path(utils::choose.dir(), filename))
-  } else {
-    if (!is.na(folder)) {
-      write.csv(df3, file = file.path(folder, filename))
-    }
-  }
+  dbmefu::save_df(df = df3, filename = filename, folder = folder)
 
   df3
 }
@@ -41,13 +35,7 @@ in_db1_not_in_db2 <- function(
   df3 <- df2[(!nomi1 %in% nomi2), ]
 
   filename <- "not_in_db2.csv"
-  if (folder == "choose") {
-    write.csv(df3, file = file.path(utils::choose.dir(), filename))
-  } else {
-    if (!is.na(folder)) {
-      write.csv(df3, file = file.path(folder, filename))
-    }
-  }
+  dbmefu::save_df(df = df3, filename = filename, folder = folder)
 
   df3
 }
@@ -70,12 +58,20 @@ find_nots <- function(
   temp <- rbind(not_in_df1, not_in_df2); df3 <- temp[order(temp$Nome), ]
 
   filename <- "nots.csv"
-  if (folder == "choose") {
-    write.csv(df3, file = file.path(utils::choose.dir(), filename))
-  } else {
-    if (!is.na(folder)) {
-      write.csv(df3, file = file.path(folder, filename))
-    }
-  }
+  dbmefu::save_df(df = df3, filename = filename, folder = folder)
+
   df3
+}
+
+#' @title Find elements present both in df1 and in df2
+#' @description Find elements present both in df1 and in df2
+#' @inheritParams default_params_doc
+#' @return a dataframe
+#' @export
+in_db1_and_in_db2 <- function(
+  df1,
+  df2,
+  folder = NA
+) {
+
 }
