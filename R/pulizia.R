@@ -59,6 +59,10 @@ correct_characters <- function(xyz) {
   xyz <- gsub(x = xyz, pattern = "à¬", replacement = "ì")
   xyz <- gsub(x = xyz, pattern = "Ã­e", replacement = "íe")
   xyz <- gsub(x = xyz, pattern = "Ã©", replacement = "é")
+  xyz <- gsub(x = xyz, pattern = "â€œ", replacement = "\"")
+  xyz <- gsub(x = xyz, pattern = "â€\u009d", replacement = "\"")
+  xyz <- gsub(x = xyz, pattern = "Ã©", replacement = "é")
+  xyz <- gsub(x = xyz, pattern = "Ã", replacement = "à")
 
   xyz <- stringr::str_squish(xyz)
 
@@ -357,6 +361,16 @@ ripulisci_nomi <- function(df) {
   df
 }
 
+#' @export
+ripulisci_insegna_presso <- function(df) {
+  for (i in 1:nrow(df)) {
+    scuola <- df["Insegna.presso"][i, ]
+    scuola <- dbmefu::correct_characters(scuola)
+    df["Insegna.presso"][i, ] <- scuola
+  }
+  df
+}
+
 #' @title Clean the dataframe so you can work with it
 #' @description Clean the dataframe so you can work with it
 #' @inheritParams default_params_doc
@@ -369,6 +383,7 @@ ripulisci_df <- function(df) {
   df <- dbmefu::ripulisci_editori(df)
   df <- dbmefu::ripulisci_nomi(df)
   df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
+  df <- dbmefu::ripulisci_insegna_presso(df)
   df <- dbmefu::ripulisci_prima_pubblicazione(df)
   df
 }

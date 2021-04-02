@@ -23,6 +23,12 @@ lista_prima_pubblicazione_unici <- function(merged_db) {
 }
 
 #' @export
+lista_insegna_presso <- function(merged_db) {
+  out <- sort(unique(unlist(lapply(merged_db["Insegna.presso"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+  out
+}
+
+#' @export
 import_df <- function(
   address
 ) {
