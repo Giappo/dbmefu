@@ -32,7 +32,7 @@ in_db1_not_in_db2 <- function(
   nomi1 <- df1["Nome"][[1]]
   nomi2 <- df2["Nome"][[1]]
 
-  df3 <- df2[(!nomi1 %in% nomi2), ]
+  df3 <- df1[(!nomi1 %in% nomi2), ]
 
   filename <- "not_in_db2.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)

@@ -10,28 +10,36 @@ ripulisci_nomi_colonne <- function(
 ripulisci_nomi_darte <- function(
   df
 ) {
-
+  if ("Numero" %in% colnames(df)) {
+    df$Numero <- NULL
+  }
   nomi <- df["Nome"][[1]]
-  x <- nomi
+  if (!"Nome d'arte" %in% colnames(df)) {
+    df["Nome d'arte"] <- rep(NA, nrow(df))
+  }
+  df <- dplyr::select(.data = df, "Nome d'arte", dplyr::everything())
 
-  y <- cbind(rep(NA, length(x)), x)
-  trattino_mask <- grepl(pattern = " - ", x = x)
+  trattino_mask <- grepl(pattern = " - ", x = nomi)
 
-  y[trattino_mask, ] <-
-    matrix(
-      unlist(stringr::str_split(x[trattino_mask], pattern = " - ")),
+  if (sum(trattino_mask) > 0) {
+    temp <- matrix(
+      unlist(stringr::str_split(nomi[trattino_mask], pattern = " - ")),
       ncol = 2,
       byrow = TRUE
     )
+    colnames(temp) <- c("Nome d'arte", "Nome")
+    temp2 <- df[trattino_mask, c("Nome d'arte", "Nome")]
+    temp2[, "Nome"] <- temp[, "Nome"]
+    for (i in 1:nrow(temp2)) {
+      if (is.na(temp2[i, "Nome d'arte"])) {
+        temp2[i, "Nome d'arte"] <- temp[i, "Nome d'arte"]
+      }
+    }
+    temp2[, "Nome"] <- gsub(x = temp2[, "Nome"], pattern = " \".*\"", replacement = "")
+    df[trattino_mask, c("Nome d'arte", "Nome")] <- temp2
+  }
 
-  z <- y[trattino_mask, ]
-  y[trattino_mask, ] <- gsub(x = z, pattern = " \".*\"", replacement = "")
-  colnames(y) <- c("Nome d'arte", "Nome")
-  df0 <- df
-  df0["Nome"] <- NULL
-  df0 <- cbind(y, df0)
-  df0["Numero"] <- NULL
-  df0
+  df
 }
 
 #' @export
@@ -344,6 +352,8 @@ ripulisci_nomi <- function(df) {
     nome <- dbmefu::correct_nome(nome)
     df["Nome"][i, ] <- nome
   }
+  df <- df[order(df$Nome), ]
+  rownames(df) <- 1:nrow(df)
   df
 }
 
@@ -353,6 +363,7 @@ ripulisci_nomi <- function(df) {
 #' @return a clean dataframe
 #' @export
 ripulisci_df <- function(df) {
+
   df <- dbmefu::ripulisci_nomi_colonne(df)
   df <- dbmefu::ripulisci_nomi_darte(df)
   df <- dbmefu::ripulisci_editori(df)
