@@ -10,11 +10,14 @@ default_params_doc(
   address1,
   address2,
   colonna,
+  dbmefu,
   df,
   df1,
   df2,
+  dfmerged,
   filename,
-  folder
+  folder,
+  names
 )
 }
 \arguments{
@@ -26,17 +29,23 @@ default_params_doc(
 
 \item{colonna}{a column}
 
+\item{dbmefu}{the one and only MeFu database}
+
 \item{df}{a dataframe}
 
 \item{df1}{database from mefu}
 
 \item{df2}{database from comixtime}
 
+\item{dfmerged}{a merged data frame}
+
 \item{filename}{a filename}
 
 \item{folder}{if set to "choose" let you choose navigating in your folder system.
 If a path is provided it'll save there. N.B.: The path format has to be of
 the kind "C://folder1//folder2"}
+
+\item{names}{a list of names}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

@@ -72,12 +72,12 @@ save_df <- function(
 ) {
   if (!is.na(folder)) {
     if (folder == "choose") {
-      write.csv(df3, file = file.path(utils::choose.dir(), filename))
+      write.csv(df, file = file.path(utils::choose.dir(), filename))
     } else {
       if (dir.exists(folder)) {
-        write.csv(df3, file = file.path(folder, filename))
+        write.csv(df, file = file.path(folder, filename))
       } else {
-        write.csv(df3, file = filename)
+        write.csv(df, file = filename)
       }
     }
   }
