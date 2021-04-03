@@ -18,18 +18,11 @@ run_all <- function(
   not_in_df1 <- dbmefu::in_db2_not_in_db1(df1 = df1, df2 = df2, folder = folder)
   not_in_df2 <- dbmefu::in_db1_not_in_db2(df1 = df1, df2 = df2, folder = folder)
   nots <- dbmefu::find_nots(df1 = df1, df2 = df2, folder = folder)
-  in_both <- dbmefu::in_merged_and_in_db2(
-    df1 = df1,
-    df2 = df2,
-    folder = folder,
-    dfmerged = dfmerged
-  )
 
   return(list(
     dfmerged = dfmerged,
     not_in_df1 = not_in_df1,
     not_in_df2 = not_in_df2,
-    nots = nots,
-    in_both = in_both
+    nots = nots
   ))
 }
