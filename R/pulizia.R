@@ -77,7 +77,9 @@ correct_editori <- function(editore) {
 
   editore <- dbmefu::correct_characters(editore)
 
-
+  if (editore == "Action Lab" | editore == "action lab" | editore == "Action lab") {
+    return("Action Lab Entertainment")
+  }
   if (editore == "Ankama" | editore == "Ankama Editions" | editore == "ankama" | editore == "ankama editions") {
     return("Ankama Éditions")
   }
@@ -174,8 +176,8 @@ correct_editori <- function(editore) {
   if (editore == "Gallimard" | editore == "Editions Gallimard") {
     return("Éditions Gallimard")
   }
-  if (editore == "ef edizioni" | editore == "EF edizioni" | editore == "Ef Edizioni") {
-    return("EF Edizioni")
+  if (editore == "ef edizioni" | editore == "EF Edizioni" | editore == "Ef Edizioni"| editore == "EF" | editore == "ef") {
+    return("EF edizioni")
   }
   if (grepl(pattern = "Eris", x = editore)) {
     return("Eris Edizioni")
