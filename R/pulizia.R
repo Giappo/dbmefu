@@ -413,3 +413,10 @@ ordine_alfabetico_colonna <- function(df, colonna, maiusc = FALSE) {
 
   df
 }
+
+#' @export
+ordina_per_nome <- function(df) {
+  df <- df[order(df$Nome), ]
+  rownames(df) <- 1:nrow(df)
+  df
+}

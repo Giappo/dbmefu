@@ -1,33 +1,45 @@
+#' Lists all the unique instances of "Editori" present in a data frame
+#' @inheritParams default_params_doc
 #' @export
-lista_editori_unici <- function(merged_db) {
-  out <- sort(unique(unlist(lapply(merged_db$Editori, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+lista_editori_unici <- function(df) {
+  out <- sort(unique(unlist(lapply(df$Editori, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 
+#' Lists all the unique instances of "ISBN" present in a data frame
+#' @inheritParams default_params_doc
 #' @export
-lista_isbn_unici <- function(merged_db) {
-  out <- sort(unique(unlist(lapply(merged_db$ISBN, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+lista_isbn_unici <- function(df) {
+  out <- sort(unique(unlist(lapply(df$ISBN, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 
+#' Lists all the unique instances of "Mercati" present in a data frame
+#' @inheritParams default_params_doc
 #' @export
-lista_mercati_unici <- function(merged_db) {
-  out <- sort(unique(unlist(lapply(merged_db$Mercati, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+lista_mercati_unici <- function(df) {
+  out <- sort(unique(unlist(lapply(df$Mercati, FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 
+#' Lists all the unique instances of "Paesi.di.prima.pubblicazione" present in a data frame
+#' @inheritParams default_params_doc
 #' @export
-lista_prima_pubblicazione_unici <- function(merged_db) {
-  out <- sort(unique(unlist(lapply(merged_db["Paesi.di.prima.pubblicazione"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+lista_prima_pubblicazione_unici <- function(df) {
+  out <- sort(unique(unlist(lapply(df["Paesi.di.prima.pubblicazione"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 
+#' Lists all the unique instances of "Insegna.presso" present in a data frame
+#' @inheritParams default_params_doc
 #' @export
-lista_insegna_presso <- function(merged_db) {
-  out <- sort(unique(unlist(lapply(merged_db["Insegna.presso"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
+lista_insegna_presso_unici <- function(df) {
+  out <- sort(unique(unlist(lapply(df["Insegna.presso"], FUN = function(x) unlist(strsplit(x = as.character(x), split = ", "))))))
   out
 }
 
+#' Import a dataframe from an url
+#' @inheritParams default_params_doc
 #' @export
 import_df <- function(
   address
@@ -50,6 +62,8 @@ import_df <- function(
   df
 }
 
+#' Save a data frame in the specified folder
+#' @inheritParams default_params_doc
 #' @export
 save_df <- function(
   df,

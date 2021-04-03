@@ -1,4 +1,6 @@
-#'@export
+#' Creates all the dataframes and save them in the specified folder
+#' @inheritParams default_params_doc
+#' @export
 run_all <- function(
   address1 = "https://docs.google.com/spreadsheets/d/1wKeDUhL4TJJ9yVUDN49kOANU_5Y77r6-vIxaq4Wgdks/",
   address2 = "https://docs.google.com/spreadsheets/d/1AipazAj6Ebfuv0Kek4xMRYva8sodUQs-4AI3li0IbzY/",

@@ -45,8 +45,7 @@ merge_db <- function(
     df3[i, ] <- linea1
   }
 
-  df3 <- df3[order(df3$Nome), ]
-  rownames(df3) <- 1:nrow(df3)
+  df3 <- dbmefu::ordina_per_nome(df3)
   for (var in vars) {
     if (var %in% c("Editori", "Insegna.presso")) {
       maiusc <- FALSE

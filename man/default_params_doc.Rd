@@ -5,17 +5,38 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(df, df1, df2, folder)
+default_params_doc(
+  address,
+  address1,
+  address2,
+  colonna,
+  df,
+  df1,
+  df2,
+  filename,
+  folder
+)
 }
 \arguments{
+\item{address}{address from which you want to download the database from}
+
+\item{address1}{address from which you want to download the df1 from}
+
+\item{address2}{address from which you want to download the df2 from}
+
+\item{colonna}{a column}
+
 \item{df}{a dataframe}
 
 \item{df1}{database from mefu}
 
 \item{df2}{database from comixtime}
 
+\item{filename}{a filename}
+
 \item{folder}{if set to "choose" let you choose navigating in your folder system.
-If a path is provided it'll save there}
+If a path is provided it'll save there. N.B.: The path format has to be of
+the kind "C://folder1//folder2"}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

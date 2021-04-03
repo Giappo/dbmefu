@@ -12,6 +12,7 @@ in_db2_not_in_db1 <- function(
   nomi2 <- df2["Nome"][[1]]
 
   df3 <- df2[(!nomi2 %in% nomi1), ]
+  df3 <- dbmefu::ordina_per_nome(df3)
 
   filename <- "not_in_db1.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
@@ -33,6 +34,7 @@ in_db1_not_in_db2 <- function(
   nomi2 <- df2["Nome"][[1]]
 
   df3 <- df1[(!nomi1 %in% nomi2), ]
+  df3 <- dbmefu::ordina_per_nome(df3)
 
   filename <- "not_in_db2.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
@@ -55,7 +57,8 @@ find_nots <- function(
   not_in_df1$from <- "df2"
   not_in_df2$from <- "df1"
 
-  temp <- rbind(not_in_df1, not_in_df2); df3 <- temp[order(temp$Nome), ]
+  df3 <- rbind(not_in_df1, not_in_df2)
+  df3 <- dbmefu::ordina_per_nome(df3)
 
   filename <- "nots.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
@@ -64,14 +67,31 @@ find_nots <- function(
 }
 
 #' @title Find elements present both in df1 and in df2
-#' @description Find elements present both in df1 and in df2
+#' @description Create the merged database, then add all the unmerged data from
+#'  df2
 #' @inheritParams default_params_doc
 #' @return a dataframe
 #' @export
-in_db1_and_in_db2 <- function(
+in_merged_and_in_db2 <- function(
   df1,
   df2,
   folder = NA
 ) {
 
+  merged <- dbmefu::merge_db(df1, df2)
+
+  nomi_merged <- merged["Nome"][[1]]
+  nomi2 <- df2["Nome"][[1]]
+
+  aux <- df2[(!nomi2 %in% nomi_merged), ]
+  merged$from <- "merged"
+  aux$from <- "df2"
+
+  df3 <- rbind(merged, aux)
+
+  df3 <- dbmefu::ordina_per_nome(df3)
+  filename <- "in_merged_e_in_db2.csv"
+  dbmefu::save_df(df = df3, filename = filename, folder = folder)
+
+  df3
 }
