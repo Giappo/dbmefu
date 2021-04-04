@@ -62,5 +62,7 @@ merge_db <- function(
   filename <- "elenco_mefu.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
 
+  beepr::beep(sound = 3)
+
   df3
 }

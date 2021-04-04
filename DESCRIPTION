@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
 Depends:
+    beepr,
     dplyr,
     googledrive,
     knitr,

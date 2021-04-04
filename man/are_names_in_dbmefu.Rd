@@ -4,11 +4,9 @@
 \alias{are_names_in_dbmefu}
 \title{Find which names are present in dbmefu}
 \usage{
-are_names_in_dbmefu(names, dbmefu, include_nick = FALSE, folder = NA)
+are_names_in_dbmefu(df_names, dbmefu, folder = NA)
 }
 \arguments{
-\item{names}{a list of names}
-
 \item{dbmefu}{the one and only MeFu database}
 
 \item{folder}{if set to "choose" let you choose navigating in your folder system.
