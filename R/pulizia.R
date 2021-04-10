@@ -63,6 +63,7 @@ correct_characters <- function(xyz) {
   xyz <- gsub(x = xyz, pattern = "â€\u009d", replacement = "\"")
   xyz <- gsub(x = xyz, pattern = "Ã©", replacement = "é")
   xyz <- gsub(x = xyz, pattern = "Ã", replacement = "à")
+  xyz <- gsub(x = xyz, pattern = "’", replacement = "\'")
 
   xyz <- stringr::str_squish(xyz)
 
@@ -420,3 +421,16 @@ ordina_per_nome <- function(df) {
   rownames(df) <- 1:nrow(df)
   df
 }
+
+#' @export
+filter_df1_columns <- function(
+  df1,
+  df2
+) {
+  colnomi1 <- colnames(df1)
+  colnomi2 <- colnames(df2)
+  df2 <- df2[, colnomi1]
+  df2
+}
+
+

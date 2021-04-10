@@ -9,7 +9,7 @@ merge_db <- function(
   folder = NA
 ) {
 
-  testit::assert(colnames(df1) == colnames(df2))
+  df2 <- dbmefu::filter_df1_columns(df1 = df1, df2 = df2)
 
   nomi1 <- df1$Nome; length(nomi1)
   nomi2 <- df2$Nome; length(nomi2)

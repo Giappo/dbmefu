@@ -8,11 +8,16 @@ in_db2_not_in_db1 <- function(
   df2,
   folder = NA
 ) {
+
+  df2 <- dbmefu::filter_df1_columns(df1 = df1, df2 = df2)
+
   nomi1 <- df1["Nome"][[1]]
   nomi2 <- df2["Nome"][[1]]
 
   df3 <- df2[(!nomi2 %in% nomi1), ]
-  df3 <- dbmefu::ordina_per_nome(df3)
+  if (nrow(df3) > 0) {
+    df3 <- dbmefu::ordina_per_nome(df3)
+  }
 
   filename <- "not_in_db1.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
@@ -31,6 +36,9 @@ in_db1_not_in_db2 <- function(
   df2,
   folder = NA
 ) {
+
+  df2 <- dbmefu::filter_df1_columns(df1 = df1, df2 = df2)
+
   nomi1 <- df1["Nome"][[1]]
   nomi2 <- df2["Nome"][[1]]
 
@@ -54,10 +62,18 @@ find_nots <- function(
   df2,
   folder = NA
 ) {
+
+  df2 <- dbmefu::filter_df1_columns(df1 = df1, df2 = df2)
+
   not_in_df1 <- dbmefu::in_db2_not_in_db1(df1 = df1, df2 = df2, folder = folder)
   not_in_df2 <- dbmefu::in_db1_not_in_db2(df1 = df1, df2 = df2, folder = folder)
-  not_in_df1$from <- "df2"
-  not_in_df2$from <- "df1"
+
+  if (nrow(not_in_df1) > 0) {
+    not_in_df1$from <- "df2"
+  }
+  if (nrow(not_in_df2) > 0) {
+    not_in_df2$from <- "df1"
+  }
 
   df3 <- rbind(not_in_df1, not_in_df2)
   df3 <- dbmefu::ordina_per_nome(df3)
