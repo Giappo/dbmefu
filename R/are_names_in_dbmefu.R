@@ -4,15 +4,16 @@
 #' @return a list of two vectors: first are names in dbmefu, second are names not present in dbmefu
 #' @export
 are_names_in_dbmefu <- function(
-  df_names,
+  names,
   dbmefu,
   folder = NA
 ) {
 
-  df_names <- dbmefu::ordina_per_nome(df_names)
+  # df_names <- dbmefu::ordina_per_nome(df_names)
+
   dbmefu <- dbmefu::ordina_per_nome(dbmefu)
 
-  names <- df_names["Nome"][[1]]
+  # names <- df_names["Nome"][[1]]
   for (i in seq_along(names)) {
     name <- names[i]
     names[i] <- dbmefu::correct_nome(name)

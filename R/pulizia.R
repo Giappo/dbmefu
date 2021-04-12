@@ -388,6 +388,22 @@ ripulisci_df <- function(df) {
   df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
   df <- dbmefu::ripulisci_insegna_presso(df)
   df <- dbmefu::ripulisci_prima_pubblicazione(df)
+
+  vars <- colnames(df)[!colnames(df) %in% c("Nome d'arte", "Nome", "Sesso")]
+  df <- dbmefu::ordina_per_nome(df)
+  for (var in vars) {
+    if (var %in% c("Editori", "Insegna.presso")) {
+      maiusc <- FALSE
+    } else {
+      maiusc <- TRUE
+    }
+    df <- dbmefu::ordine_alfabetico_colonna(
+      df = df,
+      colonna = var,
+      maiusc = maiusc
+    )
+  }
+
   df
 }
 
