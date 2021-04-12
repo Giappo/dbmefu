@@ -20,17 +20,9 @@ are_names_in_dbmefu <- function(
   }
 
   nomi_dbmefu <- dbmefu["Nome"][[1]]
-
-  if ("Nome d'arte" %in% colnames(df_names)) {
-    arte_dbmefu <- dbmefu["Nome d'arte"][[1]]
-    arts <- df_names["Nome d'arte"][[1]]
-
-    rows_in <- (names %in% nomi_dbmefu) | (arts %in% arte_dbmefu & !is.na(arts))
-    rows_out <- !rows_in
-  } else {
-    rows_in <- names %in% nomi_dbmefu
-    rows_out <- !names %in% nomi_dbmefu
-  }
+  arte_dbmefu <- dbmefu["Nome d'arte"][[1]]
+  rows_in <- (names %in% nomi_dbmefu) | (names %in% arte_dbmefu)
+  rows_out <- !rows_in
 
   names_in <- names[rows_in]
   names_out <- names[rows_out]
