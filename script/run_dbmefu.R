@@ -8,7 +8,6 @@ folder <- "C://Projects//dbmefu"
 address1 <- "https://drive.google.com/file/d/1M3PB9Ehz25vVq9xJX0kfd3JYXF_aOo1Y/"
 address2 <- "https://drive.google.com/file/d/1JvD0F_zxBwKdgnnPyfPNTEqn-V4BU-GX/"
 
-
 df1 <- dbmefu::import_df(address1)
 df2 <- dbmefu::import_df(address2)
 df1 <- dbmefu::ripulisci_df(df1)
