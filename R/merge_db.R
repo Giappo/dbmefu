@@ -14,7 +14,8 @@ merge_db <- function(
   nomi1 <- df1$Nome; length(nomi1)
   nomi2 <- df2$Nome; length(nomi2)
 
-  vars <- colnames(df1)[!colnames(df1) %in% c("Nome d'arte", "Nome", "Sesso")]
+  commoncols <- intersect(colnames(df1), colnames(df2))
+  vars <- commoncols[!commoncols %in% c("Nome d'arte", "Nome", "Sesso")]
   testit::assert(vars %in% colnames(df1))
 
   df3 <- df1
