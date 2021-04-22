@@ -7,6 +7,7 @@ library(dbmefu, quietly = TRUE)
 folder <- "C://Projects//dbmefu"
 address1 <- "https://drive.google.com/file/d/1M3PB9Ehz25vVq9xJX0kfd3JYXF_aOo1Y/"
 address2 <- "https://drive.google.com/file/d/1JvD0F_zxBwKdgnnPyfPNTEqn-V4BU-GX/"
+# address1 <- "https://www.mefu.it/wp-content/uploads/2021/04/MEFU-Banca-dati-per-programma.xlsx" # new mefu address
 
 df1 <- dbmefu::import_df(address1)
 df2 <- dbmefu::import_df(address2)
