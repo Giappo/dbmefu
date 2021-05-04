@@ -21,7 +21,7 @@ in_db2_not_in_db1 <- function(
 
   filename <- "not_in_db1.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
-  beepr::beep(sound = 2)
+  # beepr::beep(sound = 2)
 
   df3
 }
@@ -47,7 +47,7 @@ in_db1_not_in_db2 <- function(
 
   filename <- "not_in_db2.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
-  beepr::beep(sound = 2)
+  # beepr::beep(sound = 2)
 
   df3
 }
@@ -80,7 +80,7 @@ find_nots <- function(
 
   filename <- "nots.csv"
   dbmefu::save_df(df = df3, filename = filename, folder = folder)
-  beepr::beep(sound = 2)
+  # beepr::beep(sound = 2)
 
   df3
 }
