@@ -104,7 +104,6 @@ match_db_intersections_with_dbmefu <- function(
   }
   df2 <- dbmefu::ripulisci_df(df2)
   dbmefu <- dbmefu::get_dbmefu()
-  dbmefu <- dbmefu::ripulisci_df(dbmefu)
 
   nomi <- df2[par1][[1]]
   nomi_dbmefu <- dbmefu[par1][[1]]

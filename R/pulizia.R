@@ -381,6 +381,7 @@ ripulisci_insegna_presso <- function(df) {
 #' @export
 ripulisci_df <- function(df) {
 
+  df <- data.frame(df, check.names = FALSE)
   df <- dbmefu::ripulisci_nomi_colonne(df)
   colonne <- colnames(df)
   if ("Nome" %in% colonne) {
