@@ -1,5 +1,4 @@
 #' Get Database MeFu
-#' @inheritParams default_param_doc.R
 #' @export
 get_dbmefu <- function() {
   # address1 <- "https://www.mefu.it/wp-content/uploads/2021/04/MEFU-Banca-dati-per-programma.xlsx"
