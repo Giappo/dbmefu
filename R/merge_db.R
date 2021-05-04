@@ -48,7 +48,7 @@ merge_db <- function(
 
   df3 <- dbmefu::ordina_per_nome(df3)
   for (var in vars) {
-    if (var %in% c("Editori", "Insegna.presso")) {
+    if (var %in% c("Editori", "Insegna presso")) {
       maiusc <- FALSE
     } else {
       maiusc <- TRUE

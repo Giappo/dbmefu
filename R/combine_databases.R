@@ -84,3 +84,46 @@ find_nots <- function(
 
   df3
 }
+
+#' @title Merge elements present only in one of the two databases
+#' @description Merge elements present only in one of the two databases
+#' @inheritParams default_params_doc
+#' @return a dataframe
+#' @export
+match_db_intersections_with_dbmefu <- function(
+  filename
+) {
+  par1 = "Nome"
+  par2 = "n. tessera MeFu"
+
+  if (grepl("\\.csv$", filename)) {
+    df2 <- utils::read.csv(filename)
+  }
+  if (grepl("\\.xlsx$", filename)) {
+    df2 <- readxl::read_xlsx(filename, .name_repair = "minimal")
+  }
+  df2 <- dbmefu::ripulisci_df(df2)
+  dbmefu <- dbmefu::get_dbmefu()
+  dbmefu <- dbmefu::ripulisci_df(dbmefu)
+
+  nomi <- df2[par1][[1]]
+  nomi_dbmefu <- dbmefu[par1][[1]]
+
+  if (
+    par2 %in% colnames(df2) &&
+    par2 %in% colnames(dbmefu)
+  ) {
+    nomi2 <- df2[par2][[1]]
+    nomi2_dbmefu <- dbmefu[par2][[1]]
+    rows_in <- (nomi %in% nomi_dbmefu) | (nomi2 %in% nomi2_dbmefu)
+  } else {
+    rows_in <- (nomi %in% nomi_dbmefu)
+  }
+
+  rows_out <- !rows_in
+
+  out1 <- df2[rows_in, ]
+  out2 <- df2[rows_out, ]
+  out <- list(convalidati = out1, mancanti = out2)
+  out
+}

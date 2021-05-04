@@ -334,11 +334,11 @@ ripulisci_editori <- function(df) {
 #' @export
 ripulisci_prima_pubblicazione <- function(df) {
   for (i in 1:nrow(df)) {
-    all <- df["Paesi.di.prima.pubblicazione"][i, ]
+    all <- df["Paesi di prima pubblicazione"][i, ]
     vec <- stringr::str_split(all, pattern = ", ")[[1]]
     vec[vec == "Us" | vec == "US"] <- "USA"
     vec <- sort(unique(vec))
-    df["Paesi.di.prima.pubblicazione"][i, ] <- paste(vec, collapse = ", ")
+    df["Paesi di prima pubblicazione"][i, ] <- paste(vec, collapse = ", ")
   }
   df
 }
@@ -367,9 +367,9 @@ ripulisci_nomi <- function(df) {
 #' @export
 ripulisci_insegna_presso <- function(df) {
   for (i in 1:nrow(df)) {
-    scuola <- df["Insegna.presso"][i, ]
+    scuola <- df["Insegna presso"][i, ]
     scuola <- dbmefu::correct_characters(scuola)
-    df["Insegna.presso"][i, ] <- scuola
+    df["Insegna presso"][i, ] <- scuola
   }
   df
 }
@@ -382,17 +382,28 @@ ripulisci_insegna_presso <- function(df) {
 ripulisci_df <- function(df) {
 
   df <- dbmefu::ripulisci_nomi_colonne(df)
+  colonne <- colnames(df)
+  if ("Nome" %in% colonne) {
+    df <- dbmefu::ripulisci_nomi(df)
+  }
   df <- dbmefu::ripulisci_nomi_darte(df)
-  df <- dbmefu::ripulisci_editori(df)
-  df <- dbmefu::ripulisci_nomi(df)
-  df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
-  df <- dbmefu::ripulisci_insegna_presso(df)
-  df <- dbmefu::ripulisci_prima_pubblicazione(df)
+  if ("Editore" %in% colonne) {
+    df <- dbmefu::ripulisci_editori(df)
+  }
+  if ("Attività" %in% colonne) {
+    df <- dbmefu::ordine_alfabetico_colonna(df, colonna = "Attività", maiusc = T)
+  }
+  if ("Insegna presso" %in% colonne) {
+    df <- dbmefu::ripulisci_insegna_presso(df)
+  }
+  if ("Paesi di prima pubblicazione" %in% colonne) {
+    df <- dbmefu::ripulisci_prima_pubblicazione(df)
+  }
 
   vars <- colnames(df)[!colnames(df) %in% c("Nome d'arte", "Nome", "Sesso")]
   df <- dbmefu::ordina_per_nome(df)
   for (var in vars) {
-    if (var %in% c("Editori", "Insegna.presso")) {
+    if (var %in% c("Editori", "Insegna presso")) {
       maiusc <- FALSE
     } else {
       maiusc <- TRUE
@@ -445,7 +456,7 @@ filter_df1_columns <- function(
 ) {
   colnomi1 <- colnames(df1)
   colnomi2 <- colnames(df2)
-  df2 <- df2[, colnomi1]
+  df2 <- df2[, colnomi2 %in% colnomi1]
   df2
 }
 
