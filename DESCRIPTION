@@ -24,3 +24,9 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: dbmefu
+RemoteUsername: Giappo
+GithubRepo: dbmefu
+GithubUsername: Giappo
