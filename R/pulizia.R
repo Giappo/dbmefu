@@ -388,7 +388,7 @@ ripulisci_df <- function(df) {
     df <- dbmefu::ripulisci_nomi(df)
   }
   df <- dbmefu::ripulisci_nomi_darte(df)
-  if ("Editore" %in% colonne) {
+  if ("Editori" %in% colonne) {
     df <- dbmefu::ripulisci_editori(df)
   }
   if ("Attività" %in% colonne) {
