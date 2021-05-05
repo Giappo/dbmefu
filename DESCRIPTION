@@ -1,13 +1,15 @@
 Package: dbmefu
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Type: Package
+Title: MeFu database
+Version: 0.1
+Author: Giovanni Laudanno <glaudanno@gmail.com>
+Maintainer: Giovanni Laudanno <glaudanno@gmail.com>
+Description: Handle MeFu database
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
 Depends:
     dplyr,
     googledrive,
@@ -17,12 +19,6 @@ Depends:
     testit,
     utils,
     vctrs
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,
