@@ -28,7 +28,7 @@ RemoteType: github
 RemoteHost: api.github.com
 RemoteRepo: dbmefu
 RemoteUsername: Giappo
-RemoteSha: 30036bf9bf82f19885a81730a07fe5be31ff2af3
+RemoteSha: af10784bc13712e690ff05b4091e5043364583ed
 GithubRepo: dbmefu
 GithubUsername: Giappo
-GithubSHA1: 30036bf9bf82f19885a81730a07fe5be31ff2af3
+GithubSHA1: af10784bc13712e690ff05b4091e5043364583ed
