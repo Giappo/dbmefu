@@ -53,7 +53,7 @@ import_df <- function(
     if (!grepl(pattern = "xlsx", x = x$name)) {
       local_name <- file.path(tem, "comixtime.csv")
       x <- googledrive::drive_download(address, overwrite = TRUE, path = local_name)
-      df <- utils::read.csv(local_name, check.names = TRUE, encoding = "UTF-8")
+      df <- utils::read.csv(local_name, check.names = FALSE, encoding = "UTF-8")
     } else {
       df <- readxl::read_xlsx(local_name, .name_repair = "minimal")
     }

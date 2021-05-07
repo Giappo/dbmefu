@@ -97,7 +97,7 @@ match_db_intersections_with_dbmefu <- function(
   par2 = "n. tessera MeFu"
 
   if (grepl("\\.csv$", filename)) {
-    df2 <- utils::read.csv(filename, check.names = TRUE, encoding = "UTF-8")
+    df2 <- utils::read.csv(filename, check.names = FALSE, encoding = "UTF-8")
   }
   if (grepl("\\.xlsx$", filename)) {
     df2 <- readxl::read_xlsx(filename, .name_repair = "minimal")
